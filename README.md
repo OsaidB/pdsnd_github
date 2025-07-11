@@ -14,8 +14,8 @@ This project analyzes bikeshare usage data from three major US cities — Chicag
 
 The script `bikeshare.py` provides an interactive terminal-based experience that allows users to:
 - Select a city
-- Filter data by month and/or day
-- View descriptive statistics such as:
+- Filter the data by month and/or day
+- View descriptive statistics, including:
   - Most common travel times
   - Most popular stations and trips
   - Total and average trip durations
@@ -25,10 +25,10 @@ The script `bikeshare.py` provides an interactive terminal-based experience that
 ### Files used
 - `bikeshare.py`: Python script for running the interactive data exploration
 - `chicago.csv`: Bikeshare data for Chicago
-- `new_york_city.csv`: Bikeshare data for NYC
+- `new_york_city.csv`: Bikeshare data for New York City
 - `washington.csv`: Bikeshare data for Washington, D.C.
 
 ### Credits
 - Project framework and datasets provided by [Udacity](https://www.udacity.com/)
-- Analysis performed by Osaid Baba
-- No external code libraries or blog posts were used beyond standard documentation for pandas and NumPy
+- Analysis by Osaid Baba  
+- Used only standard libraries (pandas and NumPy) with official documentation
