@@ -7,6 +7,9 @@ CITY_DATA = {
     "new york city": "new_york_city.csv",
     "washington": "washington.csv",
 }
+VALID_CITIES = ["chicago", "new york city", "washington"]
+VALID_MONTHS = ["january", "february", "march", "april", "may", "june"]
+VALID_DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 
 
 def get_filters():
@@ -14,57 +17,41 @@ def get_filters():
     Asks the user to specify a city and how they want to filter the data.
 
     Returns:
-        city (str): The city to analyze.
-        month (str): The month to filter by, or 'all'.
-        day (str): The day of the week to filter by, or 'all'.
+        city (str): The city to analyze
+        month (str): The month to filter by, or 'all'
+        day (str): The day of the week to filter by, or 'all'
     """
     print("Hello! Let's explore some US bikeshare data!")
 
-    # Get city input
-    city = input(
-        "Would you like to see data for Chicago, New York City, or Washington? "
-    ).lower()
-    while city not in ["chicago", "new york city", "washington"]:
-        print("That’s not a valid city.")
-        city = input("Please enter Chicago, New York City, or Washington: ").lower()
+    # Get valid city
+    city = get_valid_input(
+        "Would you like to see data for Chicago, New York City, or Washington? ",
+        VALID_CITIES,
+    )
 
-    # Ask how to filter the data
-    filter_type = input(
-        "Would you like to filter the data by month, day, both, or not at all? Type 'none' for no filter: "
-    ).lower()
-    while filter_type not in ["month", "day", "both", "none"]:
-        print("That’s not a valid filter type.")
-        filter_type = input("Please enter 'month', 'day', 'both', or 'none': ").lower()
+    # Get valid filter type
+    filter_type = get_valid_input(
+        "Would you like to filter the data by month, day, both, or not at all? Type 'none' for no filter: ",
+        VALID_FILTERS,
+    )
 
-    # Default values
+    # Defaults
     month = "all"
     day = "all"
 
-    # Get month if needed
-    if filter_type == "month" or filter_type == "both":
-        month = input(
-            "Which month? (January, February, March, April, May, or June): "
-        ).lower()
-        while month not in ["january", "february", "march", "april", "may", "june"]:
-            print("Invalid month.")
-            month = input("Please enter a month from January to June: ").lower()
+    # Get month if required
+    if filter_type in ("month", "both"):
+        month = get_valid_input(
+            "Which month? (January, February, March, April, May, or June): ",
+            VALID_MONTHS,
+        )
 
-    # Get day if needed
-    if filter_type == "day" or filter_type == "both":
-        day = input(
-            "Which day? (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday): "
-        ).lower()
-        while day not in [
-            "monday",
-            "tuesday",
-            "wednesday",
-            "thursday",
-            "friday",
-            "saturday",
-            "sunday",
-        ]:
-            print("Invalid day.")
-            day = input("Please enter a valid day of the week: ").lower()
+    # Get day if required
+    if filter_type in ("day", "both"):
+        day = get_valid_input(
+            "Which day? (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday): ",
+            VALID_DAYS,
+        )
 
     print("-" * 40)
     return city, month, day
