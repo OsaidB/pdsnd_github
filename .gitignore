@@ -1,2 +1,5 @@
 .github/**
 Data/**
+
+#added to ignore all CSV files everywhere in the project
+*.csv
