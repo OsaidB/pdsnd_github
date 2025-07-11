@@ -8,6 +8,19 @@ CITY_DATA = {
     "new york city": "new_york_city.csv",
     "washington": "washington.csv",
 }
+VALID_CITIES = ["chicago", "new york city", "washington"]
+VALID_MONTHS = ["january", "february", "march", "april", "may", "june"]
+VALID_DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+VALID_FILTERS = ["month", "day", "both", "none"]
+
+
+def get_valid_input(prompt, valid_options):
+    """Prompt user until a valid input is given."""
+    response = input(prompt).lower()
+    while response not in valid_options:
+        print("Invalid input.")
+        response = input(prompt).lower()
+    return response
 
 
 def get_filters():
@@ -21,51 +34,35 @@ def get_filters():
     """
     print("Hello! Let's explore some US bikeshare data!")
 
-    # Prompt user to choose a city
-    city = input(
-        "Would you like to see data for Chicago, New York City, or Washington? "
-    ).lower()
-    while city not in ["chicago", "new york city", "washington"]:
-        print("That’s not a valid city.")
-        city = input("Please enter Chicago, New York City, or Washington: ").lower()
+    # Get valid city
+    city = get_valid_input(
+        "Would you like to see data for Chicago, New York City, or Washington? ",
+        VALID_CITIES,
+    )
 
-    # Ask how the user wants to filter the data
-    filter_type = input(
-        "Would you like to filter the data by month, day, both, or not at all? Type 'none' for no filter: "
-    ).lower()
-    while filter_type not in ["month", "day", "both", "none"]:
-        print("That’s not a valid filter type.")
-        filter_type = input("Please enter 'month', 'day', 'both', or 'none': ").lower()
+    # Get valid filter type
+    filter_type = get_valid_input(
+        "Would you like to filter the data by month, day, both, or not at all? Type 'none' for no filter: ",
+        VALID_FILTERS,
+    )
 
-    # Default filter values
+    # Defaults
     month = "all"
     day = "all"
 
-    # Prompt for month if required
-    if filter_type == "month" or filter_type == "both":
-        month = input(
-            "Which month? (January, February, March, April, May, or June): "
-        ).lower()
-        while month not in ["january", "february", "march", "april", "may", "june"]:
-            print("Invalid month.")
-            month = input("Please enter a month from January to June: ").lower()
+    # Get month if required
+    if filter_type in ("month", "both"):
+        month = get_valid_input(
+            "Which month? (January, February, March, April, May, or June): ",
+            VALID_MONTHS,
+        )
 
-    # Prompt for day if required
-    if filter_type == "day" or filter_type == "both":
-        day = input(
-            "Which day? (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday): "
-        ).lower()
-        while day not in [
-            "monday",
-            "tuesday",
-            "wednesday",
-            "thursday",
-            "friday",
-            "saturday",
-            "sunday",
-        ]:
-            print("Invalid day.")
-            day = input("Please enter a valid day of the week: ").lower()
+    # Get day if required
+    if filter_type in ("day", "both"):
+        day = get_valid_input(
+            "Which day? (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday): ",
+            VALID_DAYS,
+        )
 
     print("-" * 40)
     return city, month, day
@@ -151,15 +148,14 @@ def trip_duration_stats(df):
     """
     print("\nCalculating Trip Duration...\n")
 
-    # Calculate total travel time
     total_time = df["Trip Duration"].sum()
-    print(f"Total travel time: {total_time:,} seconds ({total_time / 3600:.2f} hours)")
+    avg_time = df["Trip Duration"].mean()
 
-    # Calculate average travel time
-    average_time = df["Trip Duration"].mean()
-    print(
-        f"Average travel time: {average_time:.2f} seconds ({average_time / 60:.2f} minutes)"
-    )
+    total_hours = total_time / 3600
+    avg_minutes = avg_time / 60
+
+    print(f"Total travel time: {total_time:,} seconds ({total_hours:.2f} hours)")
+    print(f"Average travel time: {avg_time:.2f} seconds ({avg_minutes:.2f} minutes)")
 
 
 def user_stats(df):
