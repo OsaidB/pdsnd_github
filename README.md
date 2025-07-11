@@ -1,17 +1,34 @@
->**Note**: Please **fork** the current Udacity repository so that you will have a **remote** repository in **your** Github account. Clone the remote repository to your local machine. Later, as a part of the project "Post your Work on Github", you will push your proposed changes to the remote repository in your Github account.
+# US Bikeshare Data Exploration
+
+> **Note**: This project is based on the Udacity Programming for Data Science with Python Nanodegree. The original starter code was provided by Udacity.
 
 ### Date created
-Include the date you created this project and README file.
+Originally completed on **May 13, 2025** as part of the "Explore US Bikeshare Data" project.  
+This GitHub version was created on **July 10, 2025** for the "Post Your Work on GitHub" task.
 
 ### Project Title
-Replace the Project Title
+Explore US Bikeshare Data
 
 ### Description
-Describe what your project is about and what it does
+This project analyzes bikeshare usage data from three major US cities — Chicago, New York City, and Washington — for the first half of 2017.
+
+The script `bikeshare.py` provides an interactive terminal-based experience that allows users to:
+- Select a city
+- Filter data by month and/or day
+- View descriptive statistics such as:
+  - Most common travel times
+  - Most popular stations and trips
+  - Total and average trip durations
+  - User demographics (user types, gender, birth years)
+  - Optionally view raw data in chunks
 
 ### Files used
-Include the files used
+- `bikeshare.py`: Python script for running the interactive data exploration
+- `chicago.csv`: Bikeshare data for Chicago
+- `new_york_city.csv`: Bikeshare data for NYC
+- `washington.csv`: Bikeshare data for Washington, D.C.
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+- Project framework and datasets provided by [Udacity](https://www.udacity.com/)
+- Analysis performed by Osaid Baba
+- No external code libraries or blog posts were used beyond standard documentation for pandas and NumPy
