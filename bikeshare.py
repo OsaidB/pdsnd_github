@@ -158,15 +158,14 @@ def trip_duration_stats(df):
     """
     print("\nCalculating Trip Duration...\n")
 
-    # Total travel time
     total_time = df["Trip Duration"].sum()
-    print(f"Total travel time: {total_time:,} seconds ({total_time / 3600:.2f} hours)")
+    avg_time = df["Trip Duration"].mean()
 
-    # Average travel time
-    average_time = df["Trip Duration"].mean()
-    print(
-        f"Average travel time: {average_time:.2f} seconds ({average_time / 60:.2f} minutes)"
-    )
+    total_hours = total_time / 3600
+    avg_minutes = avg_time / 60
+
+    print(f"Total travel time: {total_time:,} seconds ({total_hours:.2f} hours)")
+    print(f"Average travel time: {avg_time:.2f} seconds ({avg_minutes:.2f} minutes)")
 
 
 # if __name__ == "__main__":
